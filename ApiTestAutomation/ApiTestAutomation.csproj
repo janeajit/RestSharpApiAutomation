@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="ExtentReports" Version="5.0.4" />
     <PackageReference Include="Microsoft.NET.TEST.Sdk" Version="17.13.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Nunit" Version="4.3.2" />

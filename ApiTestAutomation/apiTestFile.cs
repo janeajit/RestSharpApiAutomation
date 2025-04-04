@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using AventStack.ExtentReports;
+using Microsoft.VisualStudio.TestPlatform.Common;
+using Newtonsoft.Json;
 using NUnit.Framework;
 using RestSharp;
 
@@ -19,6 +21,7 @@ namespace ApiTestAutomation
             Assert.That(response.StatusCode, Is.EqualTo(System.Net.HttpStatusCode.OK));
             ApiResponse responseObject = JsonConvert.DeserializeObject<ApiResponse>(response.Content);
             Assert.That(responseObject.Success, Is.EqualTo(true));
+            _test.Log(Status.Info, "Request Data: " + JsonConvert.SerializeObject(response));
         }
 
         [Test]
@@ -40,6 +43,7 @@ namespace ApiTestAutomation
 
             var response = await Api.SendRequestAsync("/users/register", Method.Post, headers, parameters);
             Assert.That(response.StatusCode, Is.EqualTo(System.Net.HttpStatusCode.Created));
+            _test.Log(Status.Info, "Request Data: " + JsonConvert.SerializeObject(parameters));
         }
 
         [Test]
@@ -59,6 +63,7 @@ namespace ApiTestAutomation
 
             var response = await Api.SendRequestAsync("/users/login", Method.Post, headers, parameters);
             Assert.That(response.StatusCode, Is.EqualTo(System.Net.HttpStatusCode.OK));
+            _test.Log(Status.Info, "Request Data: " + JsonConvert.SerializeObject(parameters));
         }
     }
 }
